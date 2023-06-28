@@ -34,8 +34,7 @@
     "format:fix": "prettier . --ignore-path .gitignore --write",
     "lint": "eslint --ext .tsx,.ts .",
     "validate": "concurrently \"yarn run lint\" \"yarn run type:check\" \"yarn run format:check\"",
-    "type:check": "tsc",
-    "prepare": "husky install"
+    "type:check": "tsc"
   },
   "eslintConfig": {
     "extends": [
@@ -67,7 +66,6 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-security": "^1.4.0",
-    "husky": "^7.0.4",
     "lint-staged": "^12.1.5",
     "postcss": "^8.4.24",
     "prettier": "^2.5.1"
