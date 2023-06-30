@@ -1,18 +1,3 @@
-@font-face {
-  font-family: "Poppins-Medium";
-  src: url("assests/fonts/Poppins-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Poppins-Regular";
-  src: url("assests/fonts/Poppins-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Poppins-SemiBold";
-  src: url("assests/fonts/Poppins-SemiBold.ttf");
-}
-
 * {
   margin: 0;
   padding: 0;
