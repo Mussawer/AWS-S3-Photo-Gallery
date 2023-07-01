@@ -7,7 +7,7 @@ interface FileInputProps {
   
 }
 
-const URL: string = 'url';
+const URL: string = 'http://localhost:5000/api/upload/images';
 
 const FileInput: FC<FileInputProps> = () => {
 
@@ -23,7 +23,7 @@ const FileInput: FC<FileInputProps> = () => {
 
   return (
     <div className='flex flex-col w-full'>
-        <Input id="picture" type="file" hidden onChange={handleUpload}/>
+        <Input id="picture" type="file" className='m-2 w-3/12' onChange={handleUpload}/>
         <Button className='m-2 w-3/12' >
             Upload
         </Button>

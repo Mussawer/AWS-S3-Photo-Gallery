@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export const uploadImageToS3 = async (url: string, image: FormData) => {
+  console.log("🚀 ~ file: UploadAndGetImageFromS3.ts:4 ~ uploadImageToS3 ~ url:", url)
   const response = await axios.post(url, image);
-  return response.data
+  console.log("🚀 ~ file: UploadAndGetImageFromS3.ts:6 ~ uploadImageToS3 ~ response:", response)
+  // return response.data
 };
 
 export const getImageFromS3 = async (url: string) => {
