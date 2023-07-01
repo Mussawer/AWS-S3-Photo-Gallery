@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react'
+import React, { FC, ChangeEvent, useState, MouseEvent } from 'react'
 import { useUploadImage } from '../hooks/useUploadAndGetImage';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -10,7 +10,6 @@ interface FileInputProps {
 const URL: string = 'http://localhost:5000/api/upload/images';
 
 const FileInput: FC<FileInputProps> = () => {
-
   const {mutate: uploadImageToS3} = useUploadImage()
 
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,14 +18,16 @@ const FileInput: FC<FileInputProps> = () => {
     const form = new FormData()
     form.append('image', file)
     uploadImageToS3([URL, form])
+    event.target.value = ''
   }
 
   return (
     <div className='flex flex-col w-full'>
         <Input id="picture" type="file" className='m-2 w-3/12' onChange={handleUpload}/>
-        <Button className='m-2 w-3/12' >
+        <Button className='m-2 w-3/12'>
             Upload
         </Button>
+       
     </div>
   )
 }

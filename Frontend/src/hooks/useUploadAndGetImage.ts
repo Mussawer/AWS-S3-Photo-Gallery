@@ -16,5 +16,5 @@ export const useGetImage = () => {
 };
 
 export const useUploadImage = () => {
-  return useMutation((args: [string, FormData]) => uploadImageToS3(...args));
+  return useMutation((args: [string, FormData | null | undefined]) => uploadImageToS3(...args));
 };

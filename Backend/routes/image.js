@@ -13,7 +13,9 @@ router.post("/upload/images", upload.single("image"), async (req, res) => {
     const { file } = req;
     console.log("🚀 ~ file: image.js:14 ~ router.post ~ file:", file)
 
-    const { error, key } = uploadToS3({ file, userId: "123" });
+    const { error, key, response } = uploadToS3({ file, userId: "123" });
+    console.log("🚀 ~ file: image.js:17 ~ router.post ~ response:", response)
+    console.log("🚀 ~ file: image.js:17 ~ router.post ~ key:", key)
     if (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -21,7 +23,7 @@ router.post("/upload/images", upload.single("image"), async (req, res) => {
     let result = {
       success: true,
       key,
-      message: "inserting design data attachments",
+      message: "Image Uploaded Successfully",
     };
     res.status(200).send(result);
   } catch (err) {
