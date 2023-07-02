@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getImageFromS3, uploadImageToS3 } from "../services/UploadAndGetImageFromS3";
 
 
@@ -16,5 +16,10 @@ export const useGetImage = () => {
 };
 
 export const useUploadImage = () => {
-  return useMutation((args: [string, FormData | null | undefined]) => uploadImageToS3(...args));
+  const queryClient = useQueryClient()
+  return useMutation((args: [FormData]) => uploadImageToS3(...args),{
+    onSuccess: () => {
+      queryClient.invalidateQueries(['image-from-s3'])
+    }
+  });
 };

@@ -7,8 +7,6 @@ interface FileInputProps {
   
 }
 
-const URL: string = 'http://localhost:5000/api/upload/images';
-
 const FileInput: FC<FileInputProps> = () => {
   const {mutate: uploadImageToS3} = useUploadImage()
 
@@ -17,7 +15,7 @@ const FileInput: FC<FileInputProps> = () => {
     console.log("🚀 ~ file: FileInput.tsx:13 ~ handleUpload ~ file:", file)
     const form = new FormData()
     form.append('image', file)
-    uploadImageToS3([URL, form])
+    uploadImageToS3([form])
     event.target.value = ''
   }
 

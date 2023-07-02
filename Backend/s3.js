@@ -1,4 +1,4 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { v4 as uuid } from "uuid";
 
 const region = process.env.REGION;
@@ -31,3 +31,17 @@ export const uploadToS3 = async ({ file, userId }) => {
     return { error };
   }
 };
+
+export const getImageFromS3 = async ({userId}) => {
+    try {
+        const key = `${userId}/`
+        const command = new GetObjectCommand({
+            Bucket: Bucket,
+            Key: key
+        })
+        await s3.send(command)
+        return {key}
+    } catch (error) {
+        return {error}   
+    }
+}
