@@ -1,6 +1,6 @@
 import express from "express";
 import upload from "../middlewares/upload.js";
-import { getImageFromS3, uploadToS3 } from "../s3.js";
+import { getUserPresignedUrls, uploadToS3 } from "../s3.js";
 
 const router = express.Router();
 
@@ -37,14 +37,14 @@ router.post("/upload/images", upload.single("image"), async (req, res) => {
 
 router.get("/images", async (req, res) => {
   try {
-    const { error, key } = getImageFromS3({ userId: "123" });
+    const { error, presignedUrls } = await getUserPresignedUrls({ userId: "123" });
     if (error) {
       return res.status(500).json({ message: error.message });
     }
     let result = {
       success: true,
-      key,
-      message: "Image Uploaded Successfully",
+      presignedUrls,
+      message: "Image Uploaded",
     };
     res.status(200).send(result);
   } catch (err) {

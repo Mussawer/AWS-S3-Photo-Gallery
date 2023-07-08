@@ -3,16 +3,9 @@ import { getImageFromS3, uploadImageToS3 } from "../services/UploadAndGetImageFr
 
 
 export const useGetImage = () => {
-  return useQuery(['image-from-s3'],  () => getImageFromS3, {
-    onSuccess: (data) => {
-      // Handle successful query result
-      console.log("Image fetched successfully:", data);
-    },
-    onError: error => {
-      // Handle query error
-      console.error("Error fetching image:", error);
-    },
-  });
+  const {isLoading, data} = useQuery(['image-from-s3'],  () => getImageFromS3());
+  console.log("🚀 ~ file: useUploadAndGetImage.ts:7 ~ useGetImage ~ isLoading:", isLoading)
+  return {isLoading, data}
 };
 
 export const useUploadImage = () => {
@@ -23,3 +16,5 @@ export const useUploadImage = () => {
     }
   });
 };
+
+
